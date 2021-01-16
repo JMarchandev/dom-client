@@ -15,15 +15,18 @@ import { Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
-// import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
 
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-// import InboxIcon from '@material-ui/icons/MoveToInbox';
-// import MailIcon from '@material-ui/icons/Mail';
+import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
+import SettingsRemoteIcon from '@material-ui/icons/SettingsRemote';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,11 +39,13 @@ const useStyles = makeStyles((theme) => ({
     display: 'none',
   },
   drawer: {
+    margin: 10,
     width: theme.sizing.marginLeft,
     flexShrink: 0,
   },
   drawerPaper: {
     width: theme.sizing.marginLeft,
+    backgroundColor: theme.palette.secondary.light,
   },
   drawerHeader: {
     display: 'flex',
@@ -50,6 +55,20 @@ const useStyles = makeStyles((theme) => ({
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
   },
+  list: {
+    margin: 10
+  },
+  headerAccordion: {
+    paddingLeft: 0
+  },
+  link: {
+    textDecoration: 'none',
+    color: theme.palette.primary.dark,
+    '&:hover, :&focus, &:active': {
+      textDecoration: 'none',
+      color: 'inherit',
+    }
+  }
   // content: {
   //   flexGrow: 1,
   //   padding: theme.spacing(3),
@@ -90,7 +109,7 @@ export const LeftMenu = () => {
     <div className={classes.root} >
       <Drawer
         className={classes.drawer}
-        variant='persistent'
+        variant='permanent'
         anchor='left'
         open={store.status}
         onClose={toggleDrawer(false)}
@@ -98,36 +117,70 @@ export const LeftMenu = () => {
           paper: classes.drawerPaper,
         }}
       >
-        <div className={classes.drawerHeader} />
-        <Divider />
         <div className={classes.drawerHeader}>
           <IconButton onClick={toggleDrawer(false)}>
             <ChevronLeftIcon />
           </IconButton>
         </div>
-        <List>
-          {store.rooms.length > 0
-            && store.rooms.map((room, index) => (
-              <ListItem button key={room._id}>
-                <Link to={'/rooms'}>
-                  <ListItemText>{room.name}</ListItemText>
+        <List className={classes.list}>
+          <Accordion>
+            <AccordionSummary
+              className={classes.headerAccordion}
+              expandIcon={<ExpandMoreIcon />}
+            >
+              <Link className={classes.link} to={'/rooms'}>
+                <ListItem button key={'title'}>
+                  <ListItemIcon>
+                    <MeetingRoomIcon fontSize="large" color="primary" />
+                  </ListItemIcon>
+                  <ListItemText>
+                    <Typography variant="h6">Pieces</Typography>
+                  </ListItemText>
+                </ListItem>
+              </Link>
+            </AccordionSummary>
+            {store.rooms.length > 0
+              && store.rooms.map((room, index) => (
+                <Link className={classes.link} to={`/rooms/${room._id}`}>
+                  <ListItem button key={room._id}>
+                    <ListItemText>
+                      <Typography variant="subtitle1">
+                        {room.name}
+                      </Typography>
+                    </ListItemText>
+                  </ListItem>
                 </Link>
-              </ListItem>
-            ))
-          }
-        </List>
-        <Divider />
-        <List>
-          {store.equipments.length > 0
-            && store.equipments.map((equipment, index) => (
-              <ListItem button key={equipment._id}>
-                {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
-                <Link to={'/equipments'}>
-                  <ListItemText>{equipment.name}</ListItemText>
+              ))
+            }
+          </Accordion>
+          <Accordion>
+            <AccordionSummary
+              className={classes.headerAccordion}
+              expandIcon={<ExpandMoreIcon />}
+            >
+              <Link className={classes.link} to={'/equipments'}>
+                <ListItem button key={'title'}>
+                  <ListItemIcon>
+                    <SettingsRemoteIcon fontSize="large" color="primary" />
+                  </ListItemIcon>
+                  <ListItemText>
+                    <Typography variant="h6">Equipments</Typography>
+                  </ListItemText>
+                </ListItem>
+              </Link>
+            </AccordionSummary>
+            {store.equipments.length > 0
+              && store.equipments.map((equipment, index) => (
+                <Link className={classes.link} to={`/equipments/${equipment._id}`}>
+                  <ListItem button key={equipment._id}>
+                    <ListItemText>
+                      <Typography variant="subtitle1">{equipment.name}</Typography>
+                    </ListItemText>
+                  </ListItem>
                 </Link>
-              </ListItem>
-            ))
-          }
+              ))
+            }
+          </Accordion>
         </List>
       </Drawer>
     </div >
