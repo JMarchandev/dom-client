@@ -10,6 +10,7 @@ import { setModalStatus } from '../../redux/slices/NavigationSlice';
 // Internal import
 import Profiles from './Profiles';
 import Login from './Login';
+import Delete from './Delete';
 
 // Material UI
 
@@ -27,7 +28,9 @@ export default function SimpleDialogDemo() {
             case 'PROFILES':
                 return <Profiles open={status} onClose={handleClose} />;
             case 'LOGIN':
-                return <Login open={status} onClose={handleClose} />
+                return <Login open={status} onClose={handleClose} />;
+            case 'DELETE_MODAL':
+                return  <Delete open={status} onClose={handleClose} />
             default:
                 break;
         }
