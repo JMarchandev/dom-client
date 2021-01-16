@@ -109,7 +109,7 @@ export const LeftMenu = () => {
     <div className={classes.root} >
       <Drawer
         className={classes.drawer}
-        variant='permanent'
+        variant='persistent'
         anchor='left'
         open={store.status}
         onClose={toggleDrawer(false)}

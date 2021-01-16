@@ -1,5 +1,5 @@
 // Redux
-import React, { useEffect } from 'react';
+import React from 'react';
 
 // Redux
 import { useDispatch } from 'react-redux';
@@ -45,9 +45,6 @@ const useStyles = makeStyles((theme) => ({
 export const LedCard = ({ equipment }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  useEffect(() => {
-
-  }, [equipment])
 
   const handleToggleLed = () => {
     toggleLed(equipment)

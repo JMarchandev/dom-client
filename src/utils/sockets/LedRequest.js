@@ -16,6 +16,7 @@ const reqGetLedStatusKey = 'REQ_GET_LED_STATUS';
 const resToggleLedKey = 'RES_TOGGLE_LED';
 const resTimerLedKey = 'RES_TIMER_LED';
 const resProgramLedKey = 'RES_PROGRAM_LED';
+// eslint-disable-next-line no-unused-vars
 const resGetLedStatus = 'RES_GET_LED_STATUS';
 
 export function toggleLed(equipment) {

@@ -53,23 +53,18 @@ const Layout = () => {
                     const rooms = res[1].data;
                     const profiles = res[2].data;
 
-                    console.log(JSON.stringify(profiles), JSON.stringify(state.profiles))
-
                     if (JSON.stringify(equipments) !== JSON.stringify(state.equipments.allEquipments)) {
-                        console.log('s');
                         const initializedEquipments = equipments
                             .filter(equipment => equipment?.gpio)
-                            //.sort((a, b) => (a.counter < b.counter) ? 1 : -1)
+                        //.sort((a, b) => (a.counter < b.counter) ? 1 : -1)
 
                         dispatch(setInitializedEquipments(initializedEquipments))
                         dispatch(setEquipments(equipments))
                     }
                     if (JSON.stringify(rooms) !== JSON.stringify(state.rooms.allRooms)) {
-                        console.log('s');
                         dispatch(setRooms(rooms))
                     }
                     if (JSON.stringify(profiles) !== JSON.stringify(state.users.allProfiles)) {
-                        console.log('s');
                         dispatch(setProfiles(profiles))
                     }
                 })
@@ -80,7 +75,7 @@ const Layout = () => {
         promise()
         setIsLoading(false)
         dispatch(setRenderStatus(false))
-    }, [render])
+    }, [dispatch, render, state.equipments.allEquipments, state.rooms.allRooms, state.users.allProfiles])
 
     return (
         <div className={classes.root}>
@@ -91,7 +86,6 @@ const Layout = () => {
                     <Router>
                         <TopMenu />
                         <div className={classes.container}>
-                            {/* <Container className={classes.container} maxWidth={'md'}> */}
                             <Switch>
                                 <Route path="/equipments">
                                     <Equipments />
@@ -103,7 +97,6 @@ const Layout = () => {
                                     <Home />
                                 </Route>
                             </Switch>
-                            {/* </Container> */}
                         </div>
                     </Router>
                 </>

@@ -24,8 +24,8 @@ export const setRenderStatus = (payload) => {
     return {
         type: 'RENDERED',
         payload,
-    }
-}
+    };
+};
 
 const initialState = {
     leftMenu: false,
@@ -36,8 +36,9 @@ const initialState = {
     modal: {
         status: false,
         view: null,
+        id: null
     },
-    render: false
+    render: false,
 };
 
 export default function navigationReducer(state = initialState, action) {
@@ -58,11 +59,10 @@ export default function navigationReducer(state = initialState, action) {
                 modal: action.payload,
             };
         case 'RENDERED':
-            console.log('slice');
             return {
                 ...state,
                 render: action.payload,
-            }
+            };
         default:
             return state;
     };

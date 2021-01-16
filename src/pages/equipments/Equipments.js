@@ -5,13 +5,29 @@ import React from 'react';
 // API request
 // Socket resquest
 // Internal import
-// Material UI
+import EquipmentsTable from '../../components/EquipmentsTable/EquipmentsTable';
+import AddEquipmentForm from '../../components/EquipmentsTable/AddEquipmentForm';
 
-export const Equipments = () => {
+// Material UI
+import { makeStyles } from '@material-ui/styles';
+
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        marginRight: theme.sizing.marginRight,
+        marginLeft: theme.sizing.marginLeft,
+    },
+}));
+
+export const EquipmentTable = () => {
+    const classes = useStyles()
 
     return (
-        <div>equipments</div>
+        <div className={classes.root}>
+            <EquipmentsTable />
+            <AddEquipmentForm />
+        </div>
     );
 };
 
-export default Equipments;
+export default EquipmentTable;
