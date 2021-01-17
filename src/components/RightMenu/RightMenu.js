@@ -8,6 +8,7 @@ import { setRightBarStatus } from '../../redux/slices/NavigationSlice';
 // Socket resquest
 // Internal import
 import Account from './Account';
+import Settings from './Settings/Settings';
 
 // Material UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -70,8 +71,8 @@ export const RightMenu = () => {
 
   const View = () => {
     switch (view) {
-      // case 'SETINGS':
-      //   return <Account/>;
+      case 'SETTINGS':
+        return <Settings/>;
       case 'ACCOUNT':
         return <Account />;
       default:
