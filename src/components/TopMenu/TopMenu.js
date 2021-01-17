@@ -21,6 +21,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
+import Avatar from '@material-ui/core/Avatar';
+import PersonIcon from '@material-ui/icons/Person';
 
 import SettingsIcon from '@material-ui/icons/Settings';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -112,10 +114,15 @@ export const TopMenu = ({ children }) => {
                         <Button
                             onClick={() => handleToggleRightMenu('ACCOUNT')}
                             color="inherit"
-                        >{user.firstName}</Button>
+                        >
+                            {user.firstName}&emsp;
+                            <Avatar className={classes.avatar}>
+                                <PersonIcon />
+                            </Avatar>
+                        </Button>
                     }
 
-                    <Button onClick={() => handleChangeModalStatus(!rightMenu.status, 'SETINGS')} color="inherit">
+                    <Button onClick={() => handleToggleRightMenu('SETTINGS')} color="inherit">
                         <SettingsIcon />
                     </Button>
                 </Toolbar>

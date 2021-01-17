@@ -8,14 +8,12 @@ import { setRightBarStatus } from '../../redux/slices/NavigationSlice';
 // Socket resquest
 // Internal import
 import Account from './Account';
+import Settings from './Settings/Settings';
 
 // Material UI
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -73,8 +71,8 @@ export const RightMenu = () => {
 
   const View = () => {
     switch (view) {
-      // case 'SETINGS':
-      //   return <Account/>;
+      case 'SETTINGS':
+        return <Settings/>;
       case 'ACCOUNT':
         return <Account />;
       default:
