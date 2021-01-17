@@ -79,8 +79,6 @@ export const Profiles = (props) => {
         onClose();
     };
 
-    console.log(formValues);
-
     return (
         <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={status}>
             <DialogTitle id="simple-dialog-title">Connexion</DialogTitle>

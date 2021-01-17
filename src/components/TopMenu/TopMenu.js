@@ -27,23 +27,16 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        //backgroundColor: theme.palette.primary.light,
         flexGrow: 1,
     },
     appBar: {
+        minHeight: theme.sizing.marginTop,
+        backgroundColor: theme.palette.primary.dark,
         zIndex: theme.zIndex.drawer + 1,
         transition: theme.transitions.create(['margin', 'width'], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
-    },
-    appBarShift: {
-        // width: `calc(100% - ${theme.sizing.marginLeft}px)`,
-        // marginLeft: theme.sizing.marginLeft,
-        // transition: theme.transitions.create(['margin', 'width'], {
-        //     easing: theme.transitions.easing.easeOut,
-        //     duration: theme.transitions.duration.enteringScreen,
-        // }),
     },
     hide: {
         display: 'none',
@@ -61,24 +54,32 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const TopMenu = ({ children }) => {
-    const leftMenu = useSelector(state => state.navigation.leftMenu)
-    const rightMenu = useSelector(state => state.navigation.rightMenu)
-    const user = useSelector(state => state.users.currentProfile)
+    const leftMenu = useSelector(state => state.navigation.leftMenu);
+    const rightMenu = useSelector(state => state.navigation.rightMenu);
+    const user = useSelector(state => state.users.currentProfile);
+
     const dispatch = useDispatch();
     const classes = useStyles();
 
     const handleToggleLeftMenu = () => {
-        dispatch(setLeftBarStatus(!leftMenu))
+        dispatch(setLeftBarStatus(!leftMenu));
+    };
+
+    const handleToggleRightMenu = (view) => {
+        if (rightMenu.status === true) {
+            dispatch(setRightBarStatus({ status: false, view: null }))
+        } else if (rightMenu.status === false) {
+            dispatch(setRightBarStatus({ status: true, view: view }))
+        }
     }
 
     const handleChangeModalStatus = (newStatus, view) => {
-        console.log(newStatus);
         if (newStatus === false) {
-            dispatch(setModalStatus({ status: false, view: null }))
+            dispatch(setModalStatus({ status: false, view: null }));
         } else if (newStatus === true) {
-            dispatch(setModalStatus({ status: newStatus, view }))
-        }
-    }
+            dispatch(setModalStatus({ status: newStatus, view }));
+        };
+    };
 
     return (
         <div className={classes.root}>
@@ -99,7 +100,7 @@ export const TopMenu = ({ children }) => {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" className={classes.title}>
-                        <Link className={classes.link} to={'/'}>News</Link>
+                        <Link className={classes.link} to={'/'}>Dom-House</Link>
                     </Typography>
                     {user === null &&
                         <Button
@@ -109,7 +110,7 @@ export const TopMenu = ({ children }) => {
                     }
                     {user?._id &&
                         <Button
-                            onClick={() => dispatch(setRightBarStatus({ status: true, view: 'ACCOUNT' }))}
+                            onClick={() => handleToggleRightMenu('ACCOUNT')}
                             color="inherit"
                         >{user.firstName}</Button>
                     }

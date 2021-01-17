@@ -64,7 +64,6 @@ export const InitEquipmentForm = (Props) => {
             .catch(err => console.log(err.message))
     };
 
-    console.log(formValues);
     return (
         <form onSubmit={handleSubmit} className={classes.form}>
             <Grid className={classes.grid} container>

@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: theme.sizing.marginLeft,
-    backgroundColor: theme.palette.secondary.light,
+    backgroundColor: theme.palette.primary.main,
   },
   drawerHeader: {
     display: 'flex',
@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
     margin: 10
   },
   headerAccordion: {
-    paddingLeft: 0
+    paddingLeft: 0,
   },
   link: {
     textDecoration: 'none',

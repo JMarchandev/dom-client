@@ -30,8 +30,6 @@ export const Profiles = (props) => {
     const { onClose, open = true } = props;
     const {id} = useSelector(state => state.navigation.modal)
 
-    console.log(props);
-
     const dispatch = useDispatch();
     const classes = useStyles();
 
@@ -40,7 +38,6 @@ export const Profiles = (props) => {
     };
 
     const handleApprovalTrue = (e) => {
-        console.log(id);
         removeEquipment(id)
             .then(res => {
                 dispatch(setRenderStatus(true))

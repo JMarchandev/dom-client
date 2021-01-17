@@ -28,11 +28,11 @@ import { setRenderStatus } from './redux/slices/NavigationSlice';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        backgroundColor: theme.palette.primary.main,
+        backgroundColor: theme.palette.primary.light,
         minHeight: '100vh'
     },
     container: {
-        marginTop: '10vh',
+        marginTop: '7vh',
     },
 }));
 
