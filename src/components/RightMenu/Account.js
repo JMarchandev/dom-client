@@ -7,6 +7,7 @@ import React from 'react';
 // Internal import
 // Material UI
 import { makeStyles } from '@material-ui/core/styles';
+import { Paper, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -19,7 +20,13 @@ export const Account = () => {
     const classes = useStyles()
 
     return (
-        <div className={classes.root}>Account</div>
+        <div className={classes.root}>
+            <Paper>
+                <Typography variant='h6'>
+                    Profile
+                </Typography>
+            </Paper>
+        </div>
     );
 };
 

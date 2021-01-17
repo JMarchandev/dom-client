@@ -2,7 +2,7 @@
 import React from 'react';
 
 // Redux
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // React-Router
 // API request
 // Socket resquest
@@ -12,11 +12,12 @@ import { toggleLed } from '../../utils/sockets/LedRequest'
 
 // Material UI
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
+import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-
+import LockOpenIcon from '@material-ui/icons/LockOpen';
+import LockIcon from '@material-ui/icons/Lock';
 import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects';
 import { setRenderStatus } from '../../redux/slices/NavigationSlice';
 
@@ -31,8 +32,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   icon: {
-    width: '70%',
-    height: '70%',
+    width: '4rem',
+    height: '4rem',
   },
   paper: {
     display: 'flex',
@@ -43,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const LedCard = ({ equipment }) => {
+  const user = useSelector(state => state.users.currentProfile)
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -54,7 +56,7 @@ export const LedCard = ({ equipment }) => {
 
   return (
     <div className={classes.root}>
-      <Paper
+      <Card
         className={classes.paper}
         elevation={3}
         style={equipment.status === 0
@@ -65,9 +67,15 @@ export const LedCard = ({ equipment }) => {
           <EmojiObjectsIcon className={classes.icon} />
         </Button>
         <div>
+          {equipment.isPersonal === true
+            ? equipment.user === user?._id
+              ? <LockOpenIcon />
+              : <LockIcon />
+            : null
+          }
           <Typography variant="subtitle1">{equipment.name}</Typography>
         </div>
-      </Paper>
+      </Card>
     </div>
   );
 }

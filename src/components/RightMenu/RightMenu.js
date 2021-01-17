@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: theme.sizing.marginRight,
+    backgroundColor: theme.palette.primary.main,
   },
   drawerHeader: {
     display: 'flex',
@@ -67,14 +68,10 @@ export const RightMenu = () => {
   const classes = useStyles();
 
   const toggleDrawer = (status, view) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
-    }
-
     dispatch(setRightBarStatus({ status, view }));
   };
 
-  function View() {
+  const View = () => {
     switch (view) {
       // case 'SETINGS':
       //   return <Account/>;
@@ -97,14 +94,8 @@ export const RightMenu = () => {
           paper: classes.drawerPaper,
         }}
       >
-        <div className={classes.drawerHeader}/>
+        <div className={classes.drawerHeader} />
         <Divider />
-        <div className={classes.drawerHeader}>
-          <IconButton onClick={toggleDrawer(false, null)}>
-            <ChevronRightIcon />
-          </IconButton>
-          {view}
-        </div>
         {View()}
       </Drawer>
     </div >
