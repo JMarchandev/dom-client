@@ -75,14 +75,6 @@ export const TopMenu = ({ children }) => {
         }
     }
 
-    const handleChangeModalStatus = (newStatus, view) => {
-        if (newStatus === false) {
-            dispatch(setModalStatus({ status: false, view: null }));
-        } else if (newStatus === true) {
-            dispatch(setModalStatus({ status: newStatus, view }));
-        };
-    };
-
     return (
         <div className={classes.root}>
             <AppBar
