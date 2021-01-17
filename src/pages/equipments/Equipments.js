@@ -16,6 +16,10 @@ const useStyles = makeStyles((theme) => ({
     root: {
         marginRight: theme.sizing.marginRight,
         marginLeft: theme.sizing.marginLeft,
+        [theme.breakpoints.down("xs")]: {
+            marginRight: 10,
+            marginLeft: 10,
+        },
     },
 }));
 

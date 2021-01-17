@@ -83,7 +83,12 @@ function EquipmentRow(props) {
             <TableRow className={classes.root}>
                 <TableCell align="left">
                     <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
-                        {!equipment?.gpio ? open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon /> : null}
+                        {!equipment?.gpio
+                            ? open
+                                ? <KeyboardArrowUpIcon />
+                                : <KeyboardArrowDownIcon />
+                            : null
+                        }
                     </IconButton>
                 </TableCell>
                 <TableCell align="left" component="th" scope="row">
@@ -116,7 +121,7 @@ function EquipmentRow(props) {
                                 </Typography>
                             </div>
                             <div>
-                                <InitEquipmentForm equipment={equipment} open={setOpen}/>
+                                <InitEquipmentForm equipment={equipment} open={setOpen} />
                             </div>
                         </Box>
                     </Collapse>
@@ -133,7 +138,7 @@ export default function EquipmentsTable() {
     return (
         <Grid className={classes.grid} container>
             <TableContainer className={classes.tableContainer} component={Paper}>
-                <Typography variant="h4">Mes Equipments</Typography>
+                <Typography variant="h5">Mes Equipments</Typography>
                 {allEquipments.length > 0
                     ? <Table className={classes.table} aria-label="collapsible table">
                         <TableHead className={classes.tableHead}>

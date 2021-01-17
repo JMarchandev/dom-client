@@ -33,6 +33,9 @@ const useStyle = makeStyles((theme) => ({
     },
     alert: {
         marginTop: 5,
+        [theme.breakpoints.down("xs")]: {
+            display: 'none'
+        },
     },
     divider: {
         marginTop: 10,
@@ -132,12 +135,12 @@ export const AddEquipmentForm = () => {
 
     return (
         <Paper className={classes.root}>
-            <Typography variant="h4">Ajouter un équipement</Typography>
+            <Typography variant="h5">Ajouter un équipement</Typography>
             <Alert className={classes.alert} severity="success">Ajoutez vos equipements avant de les initialiser</Alert>
             <Divider className={classes.divider} />
             <form onSubmit={handleSubmit} className={classes.form}>
                 <Grid className={classes.grid} container>
-                    <Grid item md={4}>
+                    <Grid item xs={12} md={4}>
                         <FormControl variant="outlined" className={classes.formControl}>
                             <TextField
                                 id="name"
@@ -153,7 +156,7 @@ export const AddEquipmentForm = () => {
                             />
                         </FormControl>
                     </Grid>
-                    <Grid item md={3}>
+                    <Grid item xs={6} md={3}>
                         <FormControl variant="outlined" className={classes.formControl}>
                             <InputLabel id="select-type">Type</InputLabel>
                             <Select
@@ -174,7 +177,7 @@ export const AddEquipmentForm = () => {
                             </Select>
                         </FormControl>
                     </Grid>
-                    <Grid item md={2}>
+                    <Grid item xs={6} md={2}>
                         <FormControl className={classes.formControl}>
                             <FormControlLabel
                                 //labelPlacement="top"
@@ -200,7 +203,7 @@ export const AddEquipmentForm = () => {
                             />
                         </FormControl>
                     </Grid>
-                    <Grid item md={3}>
+                    <Grid item xs={12} md={3}>
                         <FormControl className={classes.formControl}>
                             <Button type="submit" className={classes.button} size="large" variant="contained" color="primary">Ajouter</Button>
                         </FormControl>

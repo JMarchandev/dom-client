@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
         minHeight: '100vh'
     },
     container: {
-        marginTop: '7vh',
+        marginTop: theme.sizing.marginTop,
     },
 }));
 
