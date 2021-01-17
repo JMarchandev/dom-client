@@ -140,7 +140,7 @@ export const AddEquipmentForm = () => {
             <Divider className={classes.divider} />
             <form onSubmit={handleSubmit} className={classes.form}>
                 <Grid className={classes.grid} container>
-                    <Grid item xs={12} md={4}>
+                    <Grid item xs={12} md={6} lg={4}>
                         <FormControl variant="outlined" className={classes.formControl}>
                             <TextField
                                 id="name"
@@ -156,7 +156,7 @@ export const AddEquipmentForm = () => {
                             />
                         </FormControl>
                     </Grid>
-                    <Grid item xs={6} md={3}>
+                    <Grid item xs={6} md={6} lg={3}>
                         <FormControl variant="outlined" className={classes.formControl}>
                             <InputLabel id="select-type">Type</InputLabel>
                             <Select
@@ -177,7 +177,7 @@ export const AddEquipmentForm = () => {
                             </Select>
                         </FormControl>
                     </Grid>
-                    <Grid item xs={6} md={2}>
+                    <Grid item xs={6} md lg={2}>
                         <FormControl className={classes.formControl}>
                             <FormControlLabel
                                 //labelPlacement="top"
@@ -203,7 +203,7 @@ export const AddEquipmentForm = () => {
                             />
                         </FormControl>
                     </Grid>
-                    <Grid item xs={12} md={3}>
+                    <Grid item xs={12} md lg={3}>
                         <FormControl className={classes.formControl}>
                             <Button type="submit" className={classes.button} size="large" variant="contained" color="primary">Ajouter</Button>
                         </FormControl>
