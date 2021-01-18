@@ -11,7 +11,6 @@ import AddEquipmentForm from '../../components/EquipmentsTable/AddEquipmentForm'
 // Material UI
 import { makeStyles } from '@material-ui/styles';
 
-
 const useStyles = makeStyles((theme) => ({
     root: {
         marginRight: theme.sizing.marginRight,
