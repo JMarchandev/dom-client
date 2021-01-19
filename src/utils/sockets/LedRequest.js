@@ -23,7 +23,7 @@ export function toggleLed(equipment) {
     return new Promise(async (resolve, reject) => {
         await socket.emit(reqToggleLedKey, (equipment));
 
-        await socket.on(resToggleLedKey, async (response) => {
+        socket.on(resToggleLedKey, async (response) => {
             await getEquipmentById(equipment._id).then(res => {
                 const bodyRequest = {
                     status: response.status.newStatus,

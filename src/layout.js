@@ -14,7 +14,6 @@ import { getEquipments } from './utils/api/Equipments';
 import { getRooms } from './utils/api/Rooms';
 import { getUsers } from './utils/api/Users';
 
-// Socket resquest
 // Internal import
 import { TopMenu } from './components/TopMenu/TopMenu';
 import Equipments from './pages/equipments/Equipments';
@@ -41,8 +40,8 @@ const Layout = () => {
     const state = useSelector(state => state);
     const render = useSelector(state => state.navigation.render)
 
-    const classes = useStyles()
-    const dispatch = useDispatch()
+    const classes = useStyles();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         setIsLoading(true)
