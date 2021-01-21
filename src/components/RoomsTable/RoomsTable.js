@@ -1,8 +1,7 @@
 import React from 'react';
 
 // Redux
-import { useDispatch, useSelector } from 'react-redux';
-import { setModalStatus } from '../../redux/slices/NavigationSlice';
+import { useSelector } from 'react-redux';
 
 // React-Router
 // API request
@@ -62,12 +61,10 @@ const useStyles = makeStyles((theme) => ({
 function RoomRow(props) {
     const { room } = props;
 
-    const dispatch = useDispatch();
     const classes = useStyles();
 
     const handleDeleteRoom = (id) => {
         console.log(id);
-        //dispatch(setModalStatus({ status: true, view: 'DELETE_MODAL', id }))
     }
 
     return (
