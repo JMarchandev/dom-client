@@ -1,10 +1,10 @@
 // Socket config
-import openSocket from 'socket.io-client';
+import io from 'socket.io-client';
 
 // API requests
 import { getEquipmentById, updateEquipment } from '../api/Equipments';
 
-const socket = openSocket('ws://' + process.env.REACT_APP_DEVICE_IP, { transports: ['websocket'] });
+const socket = io(`ws://${process.env.REACT_APP_DEVICE_IP}`, { transports: ['websocket'] });
 
 // Request
 const reqToggleLedKey = 'REQ_TOGGLE_LED';
