@@ -45,9 +45,9 @@ const Layout = () => {
 
     useEffect(() => {
         setIsLoading(true)
-        async function promise() {
-            await Promise.all([getEquipments(), getRooms(), getUsers()])
-                .then((res) => {
+         function promise() {
+             Promise.all([getEquipments(), getRooms(), getUsers()])
+                .then(async (res) => {
                     const equipments = res[0].data;
                     const rooms = res[1].data;
                     const profiles = res[2].data;
@@ -57,14 +57,14 @@ const Layout = () => {
                             .filter(equipment => equipment?.gpio)
                         //.sort((a, b) => (a.counter < b.counter) ? 1 : -1)
 
-                        dispatch(setInitializedEquipments(initializedEquipments))
-                        dispatch(setEquipments(equipments))
+                        await dispatch(setInitializedEquipments(initializedEquipments))
+                        await dispatch(setEquipments(equipments))
                     }
                     if (JSON.stringify(rooms) !== JSON.stringify(state.rooms.allRooms)) {
-                        dispatch(setRooms(rooms))
+                        await dispatch(setRooms(rooms))
                     }
                     if (JSON.stringify(profiles) !== JSON.stringify(state.users.allProfiles)) {
-                        dispatch(setProfiles(profiles))
+                        await dispatch(setProfiles(profiles))
                     }
                 })
                 .catch(err => {
