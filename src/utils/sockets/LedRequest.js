@@ -4,7 +4,7 @@ import WebSocket from 'socket.io-client';
 // API requests
 import { getEquipmentById, updateEquipment } from '../api/Equipments';
 
-const socket = new WebSocket(`ws://${process.env.REACT_APP_DEVICE_IP}`, { transports: ['websocket'] });
+const socket = new WebSocket(`wss://${process.env.REACT_APP_DEVICE_IP}`, { transports: ['websocket'] });
 
 // Request
 const reqToggleLedKey = 'REQ_TOGGLE_LED';
