@@ -14,7 +14,7 @@ import { theme } from './theme';
 import { ThemeProvider } from '@material-ui/core/styles'
 import { setRenderStatus } from './redux/slices/NavigationSlice';
 
-const socket = openSocket(process.env.REACT_APP_DOM_SOCKET, { transports: ['websocket'] });
+const socket = openSocket(process.env.DEVICE_IP, { transports: ['websocket'] });
 
 function App() {
   const dispatch = useDispatch();
