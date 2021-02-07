@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 // Redux
 import { useDispatch, useSelector } from 'react-redux';
-import { setModalStatus, setRenderStatus } from '../../redux/slices/NavigationSlice';
+import { setModalStatus, setRenderEquipments } from '../../redux/slices/NavigationSlice';
 
 // React-Router
 // API request
@@ -123,7 +123,7 @@ export const AddEquipmentForm = () => {
 
         addEquipment(bodyRequest)
             .then(res => {
-                dispatch(setRenderStatus(true))
+                dispatch(setRenderEquipments(true))
                 setFormValues({
                     name: '',
                     type: '',

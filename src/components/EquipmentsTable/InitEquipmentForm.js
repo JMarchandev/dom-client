@@ -13,7 +13,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { updateEquipment } from '../../utils/api/Equipments';
 import { useDispatch } from 'react-redux';
-import { setRenderStatus } from '../../redux/slices/NavigationSlice';
+import { setRenderEquipments } from '../../redux/slices/NavigationSlice';
 
 const useStyle = makeStyles((theme) => ({
     form: {
@@ -57,7 +57,7 @@ export const InitEquipmentForm = (Props) => {
 
         updateEquipment(equipment._id, bodyRequest)
             .then(res => {
-                dispatch(setRenderStatus(true));
+                dispatch(setRenderEquipments(true));
                 setFormValues({ gpio: '' })
                 open(false)
             })

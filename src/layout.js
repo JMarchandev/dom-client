@@ -23,7 +23,7 @@ import Modal from './components/Modals/Modal';
 
 // Material UI
 import { makeStyles } from '@material-ui/core/styles';
-import { setRenderStatus } from './redux/slices/NavigationSlice';
+import { setRenderEquipments } from './redux/slices/NavigationSlice';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -37,44 +37,50 @@ const useStyles = makeStyles((theme) => ({
 
 const Layout = () => {
     const [isLoading, setIsLoading] = useState(false)
-    const state = useSelector(state => state);
-    const render = useSelector(state => state.navigation.render)
+    const equipments = useSelector(state => state.navigation.render.equipments)
 
     const classes = useStyles();
     const dispatch = useDispatch();
 
     useEffect(() => {
+        getEquipments()
+            .then(res => {
+                const equipments = res.data;
+
+                const initializedEquipments = equipments
+                    .filter(equipment => equipment?.gpio)
+                //.sort((a, b) => (a.counter < b.counter) ? 1 : -1)
+
+                dispatch(setInitializedEquipments(initializedEquipments))
+                dispatch(setEquipments(equipments))
+            })
+        dispatch(setRenderEquipments(false))
+    }, [equipments])
+
+    useEffect(() => {
         setIsLoading(true)
-        async function promise() {
-            await Promise.all([getEquipments(), getRooms(), getUsers()])
-                .then((res) => {
-                    const equipments = res[0].data;
-                    const rooms = res[1].data;
-                    const profiles = res[2].data;
 
-                    if (JSON.stringify(equipments) !== JSON.stringify(state.equipments.allEquipments)) {
-                        const initializedEquipments = equipments
-                            .filter(equipment => equipment?.gpio)
-                        //.sort((a, b) => (a.counter < b.counter) ? 1 : -1)
+        Promise.all([getEquipments(), getRooms(), getUsers()])
+            .then((res) => {
+                const equipments = res[0].data;
+                const rooms = res[1].data;
+                const profiles = res[2].data;
 
-                        dispatch(setInitializedEquipments(initializedEquipments))
-                        dispatch(setEquipments(equipments))
-                    }
-                    if (JSON.stringify(rooms) !== JSON.stringify(state.rooms.allRooms)) {
-                        dispatch(setRooms(rooms))
-                    }
-                    if (JSON.stringify(profiles) !== JSON.stringify(state.users.allProfiles)) {
-                        dispatch(setProfiles(profiles))
-                    }
-                })
-                .catch(err => {
-                    console.log(err.message)
-                })
-        }
-        promise()
+                const initializedEquipments = equipments
+                    .filter(equipment => equipment?.gpio)
+                //.sort((a, b) => (a.counter < b.counter) ? 1 : -1)
+
+                dispatch(setInitializedEquipments(initializedEquipments))
+                dispatch(setEquipments(equipments))
+                dispatch(setRooms(rooms))
+                dispatch(setProfiles(profiles))
+            })
+            .catch(err => {
+                console.log(err.message)
+            })
+
         setIsLoading(false)
-        dispatch(setRenderStatus(false))
-    }, [dispatch, render, state.equipments.allEquipments, state.rooms.allRooms, state.users.allProfiles])
+    }, [])
 
     return (
         <div className={classes.root}>

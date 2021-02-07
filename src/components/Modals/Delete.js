@@ -2,7 +2,7 @@ import React from 'react';
 
 // Redux
 import { useDispatch, useSelector } from 'react-redux';
-import { setRenderStatus } from '../../redux/slices/NavigationSlice';
+import { setRenderEquipments } from '../../redux/slices/NavigationSlice';
 
 // React-Router
 // API request
@@ -40,7 +40,7 @@ export const Profiles = (props) => {
     const handleApprovalTrue = (e) => {
         removeEquipment(id)
             .then(res => {
-                dispatch(setRenderStatus(true))
+                dispatch(setRenderEquipments(true))
                 onClose();
             })
             .catch(err => {

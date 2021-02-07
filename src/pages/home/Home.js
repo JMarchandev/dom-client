@@ -57,7 +57,7 @@ export const Home = () => {
                     <Typography variant="h6">Equipements favoris</Typography>
                     <div className={classes.items}>
                         {initializedEquipments.length > 0
-                            && initializedEquipments.map(equipment => (
+                            && initializedEquipments.slice(0, 3).map(equipment => (
                                 <Grid
                                     key={equipment._id}
                                     className={classes.gridItem}

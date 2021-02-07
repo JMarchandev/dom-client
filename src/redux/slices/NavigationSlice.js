@@ -20,9 +20,16 @@ export const setModalStatus = (payload) => {
     };
 };
 
-export const setRenderStatus = (payload) => {
+export const setRenderEquipments = (payload) => {
     return {
-        type: 'RENDERED',
+        type: 'EQUIPMENTS_RENDERED',
+        payload,
+    };
+};
+
+export const setRenderRooms = (payload) => {
+    return {
+        type: 'ROOMS_RENDERED',
         payload,
     };
 };
@@ -38,7 +45,10 @@ const initialState = {
         view: null,
         id: null
     },
-    render: false,
+    render: {
+        equipments: false,
+        rooms: false,
+    }
 };
 
 export default function navigationReducer(state = initialState, action) {
@@ -58,10 +68,21 @@ export default function navigationReducer(state = initialState, action) {
                 ...state,
                 modal: action.payload,
             };
-        case 'RENDERED':
+        case 'EQUIPMENTS_RENDERED':
             return {
                 ...state,
-                render: action.payload,
+                render: {
+                    ...state.render,
+                    equipments: action.payload
+                },
+            };
+        case 'ROOMS_RENDERED':
+            return {
+                ...state,
+                render: {
+                    ...state.render,
+                    rooms: action.payload
+                },
             };
         default:
             return state;

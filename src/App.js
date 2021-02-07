@@ -4,7 +4,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 
 // Socket resquest
-import openSocket from 'socket.io-client';
+import WebSocket from 'socket.io-client';
 
 // Internal import
 import Layout from './layout';
@@ -12,15 +12,15 @@ import { theme } from './theme';
 
 // Material UI
 import { ThemeProvider } from '@material-ui/core/styles'
-import { setRenderStatus } from './redux/slices/NavigationSlice';
+import { setRenderEquipments } from './redux/slices/NavigationSlice';
 
-const socket = openSocket(process.env.DEVICE_IP, { transports: ['websocket'] });
+const socket = new WebSocket(process.env.REACT_APP_DEVICE_IP, { transports: ['websocket'] });
 
 function App() {
   const dispatch = useDispatch();
 
-  socket.on('RENDER', (res) => {
-    dispatch(setRenderStatus(true))
+  socket.on('SUCCESS_', (res) => {
+    dispatch(setRenderEquipments(true))
   });
   
   return (

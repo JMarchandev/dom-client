@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 // Redux
 import { useDispatch, useSelector } from 'react-redux';
-import { setModalStatus, setRenderStatus } from '../../redux/slices/NavigationSlice';
+import { setModalStatus, setRenderRooms } from '../../redux/slices/NavigationSlice';
 
 // React-Router
 // API request
@@ -119,7 +119,7 @@ export const AddRoomForm = () => {
 
         addRoom(bodyRequest)
             .then(res => {
-                dispatch(setRenderStatus(true))
+                dispatch(setRenderRooms(true))
                 setFormValues({
                     name: '',
                     isPersonal: false

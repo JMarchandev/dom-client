@@ -8,28 +8,29 @@ import React from 'react';
 
 // Material UI
 import Paper from '@material-ui/core/Paper';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import DomTabs from '../../common/DomTabs';
+import { makeStyles } from '@material-ui/core/styles';
+
+
+const useStyles = makeStyles(() => ({
+    paper: {
+        minWidth: '100%'
+    }
+}))
 
 export default function ThemeConfig() {
     const [value, setValue] = React.useState(0);
+    const classes = useStyles()
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
 
+    const tabs = [{title: "test", content: <p>test</p>}, {title: "test1", content: <p>test1</p>}]
+
     return (
-        <Paper square>
-            <Tabs
-                value={value}
-                indicatorColor="primary"
-                textColor="primary"
-                onChange={handleChange}
-                aria-label="disabled tabs example"
-            >
-                <Tab component="div" label="Active" />
-                <Tab component="div" label="Active" />
-            </Tabs>
-        </Paper>
+        <Paper className={classes.paper} square>
+            <DomTabs value={value} onChange={handleChange} items={tabs} />
+        </Paper >
     );
 }

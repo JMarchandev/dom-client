@@ -3,6 +3,8 @@ import React from 'react';
 
 // Redux
 import { useDispatch, useSelector } from 'react-redux';
+import { setRenderEquipments } from '../../redux/slices/NavigationSlice';
+
 // React-Router
 // API request
 // Socket resquest
@@ -19,7 +21,6 @@ import Typography from '@material-ui/core/Typography';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import LockIcon from '@material-ui/icons/Lock';
 import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects';
-import { setRenderStatus } from '../../redux/slices/NavigationSlice';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,8 +51,10 @@ export const LedCard = ({ equipment }) => {
 
   const handleToggleLed = () => {
     toggleLed(equipment)
-      .then(res => dispatch(setRenderStatus(true)))
-      .catch(err => console.log(err.message))
+      .then(res => {
+        dispatch(setRenderEquipments(true))
+      })
+      .catch(err => console.error(err.message))
   };
 
   return (
